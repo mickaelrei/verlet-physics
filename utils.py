@@ -142,15 +142,14 @@ def addCircle(
         solver.addObject(VerletObject(Vector2(x, y), objectRadius))
 
     # Add outline links
-    nn = len(solver.objects)
     for i in range(numObjects):
-        solver.addLink(n + i, (n + i + 1) % nn)
+        solver.addLink(n + i, n + (i + 1) % numObjects)
 
     # Add inner links for stability
     offsetPower = int(2 ** (resolution - 2))
     for i in range(numObjects):
         idx = n + i
-        solver.addLink(idx, (idx + offsetPower - 1) % nn)
-        solver.addLink(idx, (idx + offsetPower + 1) % nn)
-        solver.addLink(idx, (idx - offsetPower + 1) % nn)
-        solver.addLink(idx, (idx - offsetPower - 1) % nn)
+        solver.addLink(idx, n + (i + offsetPower - 1) % numObjects)
+        solver.addLink(idx, n + (i + offsetPower + 1) % numObjects)
+        solver.addLink(idx, n + (i - offsetPower - 1) % numObjects)
+        solver.addLink(idx, n + (i - offsetPower + 1) % numObjects)

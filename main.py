@@ -20,10 +20,10 @@ WHITE = (255, 255, 255)
 
 solver = VerletSolver()
 
-utils.addCircle(solver, Vector2(100, 200), 70, resolution=5, objectRadius=5)
 utils.addRope(solver, Vector2(250, 400), Vector2(490, 150), numObjects=35, isStartStatic=True, isEndStatic=True)
 utils.addBox(solver, Vector2(300, 200), 4, 4, 10)
 utils.addTriangle(solver, Vector2(270, 310), Vector2(310, 310), Vector2(290, 300 - 20*1.414), objectRadius=10)
+utils.addCircle(solver, Vector2(100, 200), 70, resolution=5, objectRadius=5)
 
 for i in range(5):
     solver.addObject(VerletObject(Vector2(150 + i * 70, 110), 15))
